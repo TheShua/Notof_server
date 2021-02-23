@@ -44,14 +44,12 @@ router.post('/', async (req, res, next) => {
     return res.status(500).json({ message: "Les deux mots de passe sont différents." });
   }
 
-
   // PASSWORD ENCRYPTION 
 
   const saltRounds = 10;
 
   const hashed_password = bcrypt.hashSync(new_user_data.password, saltRounds);
   new_user_data.password = hashed_password;
-
 
   //TO DO : MOVE TO LOGIN
   // const is_valid_password = bcrypt.compareSync(req.body.password, user.password)
