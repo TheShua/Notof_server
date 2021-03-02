@@ -6,12 +6,11 @@ const path = require('path');
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const passport = require('passport');
-require('./config/passport/localStrategy')
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const loginRouter = require('./routes/auth');
+const passport = require('passport');
+require('./config/passport/localStrategy');
+
+require('./config/cloudinary-config');
 
 const app = express();
 
@@ -24,8 +23,12 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/auth', loginRouter);
+app.use('/auth', authRouter);
 
 module.exports = app;
