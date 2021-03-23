@@ -1,5 +1,5 @@
-require("dotenv").config();
-require("./config/mongo-connection");
+require('dotenv').config();
+require('./config/mongo-connection');
 
 const express = require('express');
 const path = require('path');
