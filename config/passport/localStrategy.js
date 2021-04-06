@@ -24,6 +24,7 @@ passport.use(new LocalStrategy(
                     };
                 
                 });
+                // console.log(req)
                 return done(null, current_user);
             });
 
@@ -34,10 +35,10 @@ passport.use(new LocalStrategy(
       
 ));
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
+passport.serializeUser((user, done) => {
+    done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser((user, done) => {
+    done(null, user);
 });

@@ -110,7 +110,7 @@ router.put('/:user_id', upload.single('avatar'), async (req, res) => {
 
 router.delete('/:user_id', async (req, res) => {
   try {
-    await User.deleteOne({id:req.params.user_id});
+    await User.deleteOne({ id: req.params.user_id });
     return res.status(200).json({ message: "L'utilisateur a bien été supprimé." });
   } catch (err) {
     console.log("[ERR DELETE USER ROUTE ERR]", err);
