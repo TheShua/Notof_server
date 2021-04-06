@@ -6,8 +6,9 @@ const path = require('path');
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
 const passport = require('passport');
 require('./config/passport/localStrategy');
 
@@ -26,17 +27,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    rolling: true,
-    store: MongoStore.create({
-        mongoUrl:process.env.MONGO_DB_URI
-    }),
-    cookie: {
-        secure: true,
-        maxAge: 3 * 24 * 60 * 60 * 1000,
-    }
+		store: MongoStore.create({ mongoUrl: process.env.MONGO_DB_URI }),
+		secret: process.env.SESSION_SECRET,
+		resave: true,
+		saveUninitialized: true,
 }));
 
 app.use(passport.initialize());
