@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const upload = require('../config/cloudinary-config');
+const cloudinary = require('../config/cloudinary-config');
+const upload = require('../config/multer-config');
+
 
 const User = require('../Models/User');
 
@@ -83,8 +85,8 @@ router.put('/:user_id', upload.single('avatar'), async (req, res) => {
     };
   
     if (req.file) {
-      console.log(req.file)
-      updated_user_data.avatar = req.file.secure_url;
+        const avatar = await cloudinary.uploader.upload(req.file.path);
+        updated_user_data.avatar = avatar.secure_url;
     }
   
     // CHECKS IF THE USERNAME OR EMAIL ARE ALREADY TAKEN

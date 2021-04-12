@@ -1,6 +1,6 @@
 const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
-const {CloudinaryStorage} = require('multer-storage-cloudinary');
+// const multer = require('multer');
+// const {CloudinaryStorage} = require('multer-storage-cloudinary');
 
 cloudinary.config({ 
   cloud_name: 'dncihd6ov', 
@@ -8,17 +8,17 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: async (req, files) => {
-    return {
-      folder: 'notof',
-      format: ['jpeg','png', 'jpg'],
-      public_id: 'some_unique_id',
-    };
-  }
-})
+// const storage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: async (req, files) => {
+//     return {
+//       folder: 'notof',
+//       format: ['jpeg','png', 'jpg'],
+//       public_id: 'some_unique_id',
+//     };
+//   }
+// })
   
-const parser = multer({ storage: storage });
+// const parser = multer({ storage: storage });
 
-module.exports = parser;
+module.exports = cloudinary;
